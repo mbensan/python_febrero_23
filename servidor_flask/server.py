@@ -52,6 +52,22 @@ def repeat(veces, palabra, nombre='Anónimo'):
 
     return render_template('repeat.html', nombre=nombre, palabra=palabra, colores=tonalidades)
 
+
+@app.route('/play')
+@app.route('/play/<num>')
+@app.route('/play/<num>/<color>')
+def play(num=3, color='aqua'):
+    num = int(num)
+    return render_template('play.jinja2', num=num, color=color)
+
+@app.route('/chess')
+@app.route('/chess/<columnas>')
+@app.route('/chess/<columnas>/<filas>')
+def chess(columnas=8, filas=8):
+    columnas = int(columnas)
+    filas = int(filas)
+    return render_template('chess.jinja2', filas=filas, columnas=columnas)
+
 # ruta por defecto
 @app.errorhandler(404)
 def pagina404(err):

@@ -1,0 +1,31 @@
+{% extends 'base.jinja2' %}
+
+{% block styles %}
+  <style>
+    .cuadrado {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: brown;
+      display: inline-block;
+    }
+    div:nth-child(odd) > .cuadrado:nth-child(even) {
+      background-color: black;
+    }
+    div:nth-child(even) > .cuadrado:nth-child(odd) {
+      background-color: black;
+    }
+  </style>
+{% endblock %}
+
+{% block container %}
+  <h3 class="mt-4">Cuadrados</h3>
+  <div class="cuadrados">
+    {% for fila in range(filas) %}
+      <div>
+        {% for i in range(columnas) %}
+          <div class="cuadrado"></div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

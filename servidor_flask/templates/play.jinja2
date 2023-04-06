@@ -1,0 +1,23 @@
+{% extends 'base.jinja2' %}
+
+{% block styles %}
+  <style>
+    .cuadrado {
+      width: 5rem;
+      height: 5rem;
+      border: 2px solid black;
+      background-color: {{color}};
+      display: inline-block;
+      margin-right: 2rem;
+    }
+  </style>
+{% endblock %}
+
+{% block container %}
+  <h3 class="mt-4">Cuadrados</h3>
+  <div class="cuadrados">
+    {% for i in range(num) %}
+      <div class="cuadrado"></div>
+    {% endfor %}
+  </div>
+{% endblock %}
