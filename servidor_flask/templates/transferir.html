@@ -1,0 +1,25 @@
+{% extends 'base.jinja2' %}
+
+{% block styles %}
+  <style>
+  </style>
+{% endblock %}
+
+{% block container %}
+  <h3 class="text-center">Transfiera un Monto</h3>
+  <div class="row">
+    <div class="col-4 offset-4">
+      <form action="/realizar" method="post">
+        <div>
+          <label for="name">Ingrese el nombre:</label>
+          <input type="text" name="nombre" required>
+        </div>
+        <div>
+          <label for="name">Ingrese el monto:</label>
+          <input type="number" name="monto" required min="0">
+        </div>
+        <input type="submit" value="Crear" class="btn btn-primary mt-2">
+      </form>
+    </div>
+  </div>
+{% endblock %}

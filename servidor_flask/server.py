@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 from random import randint
 
 app = Flask(__name__)
@@ -67,6 +67,36 @@ def chess(columnas=8, filas=8):
     columnas = int(columnas)
     filas = int(filas)
     return render_template('chess.jinja2', filas=filas, columnas=columnas)
+
+# La ruta GET /users devuelve el HTML del formulario
+@app.route('/users', methods=['GET'])
+def users():
+    return render_template('users.html')
+
+# La ruta POST /users recibe los datos del formulario ya enviado
+@app.route('/users', methods=['POST'])
+def add_users():
+    nombre = request.form['nombre']
+    superpoder = request.form['superpoder']
+    tipo = request.form['tipo']
+        
+    print(request.form)
+    return 'Formulario recibido'
+
+@app.route('/transferir', methods=['GET'])
+def transferir():
+    return render_template('transferir.html')
+
+
+@app.route('/realizar', methods=['POST'])
+def realizar_transferencia():
+    nombre = request.form['nombre']
+    monto = request.form['monto']
+        
+    print(f'Se ha transferido {monto} a la cuenta de {nombre}')
+    return redirect('/transferir')
+
+
 
 # ruta por defecto
 @app.errorhandler(404)
