@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block container %}
+  <h3>Usted ha visitado <span class="text-primary">{{ veces }}</span> veces la página</h3>
+  <div>
+    <a class="btn btn-success" href="/">Aumentar</a>
+    <a class="btn btn-danger" href="/destroy">Reiniciar</a>
+  </div>
+  <div>
+    <a class="btn btn-warning" href="/add/7">Añada 7</a>
+    <a class="btn btn-warning" href="/add/15">Añada 15</a>
+  </div>
+  <div class="mt-4">
+    <form action="/add" method="post">
+      <input type="number" name="num" required min="1">
+      <input type="hidden" name="saludo" value="hola curso!">
+      <input type="submit" value="Enviar">
+    </form>
+  </div>
+{% endblock %}
