@@ -1,39 +1,14 @@
 from flask import Flask, render_template, request, redirect, session
-
+from random import randint
 app = Flask(__name__)
 
 app.secret_key = 'Mi Clave'
 
+from controllers.counter import counter
+from controllers.gold import ninjagold
 
-@app.route('/')
-def home():
-    if 'counter' not in session:
-        session['counter'] = 0
-    session['counter'] += 1
-    return render_template('contador.html', veces=session['counter'])
-
-
-@app.route('/destroy')
-def destroy():
-    if 'counter' in session:
-        session.pop('counter')
-    return redirect('/')
-
-@app.route('/add/<num>')
-def add(num):
-    num = int(num)
-    session['counter'] += (num - 1)
-    return redirect('/')
-
-
-@app.route('/add', methods=['POST'])
-def add_form():
-    num = int(request.form['num'])
-    saludo = request.form['saludo']
-    print(saludo)
-    session['counter'] += (num - 1)
-    return redirect('/')
-
+app.register_blueprint(counter)
+app.register_blueprint(ninjagold, url_prefix='/gold')
 
 
 if __name__ == '__main__':

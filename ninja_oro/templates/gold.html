@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  <style>
+    .lugar {
+      border: 2px solid black;
+      border-radius: 1rem;
+    }
+  </style>
+{% endblock %}
+
+{% block container %}
+  <h3>Tienes <span class="text-warning">{{gold}}</span> ORO(S)</h3>
+  <div class="row mt-3">
+    <div class="col-3 p-3 text-center">
+      <form action="/gold/process_money" method="post" class="p-3 lugar">
+        <h4>La Granja</h4>
+        <p>Gana entre 10 y 20 oros</p>
+        <input type="hidden" name="mingold" value="10">
+        <input type="hidden" name="maxgold" value="20">
+        <input type="hidden" name="lugar" value="la Granja">
+        <input type="submit" value="¡Ganar!" class="btn btn-success">
+      </form>
+    </div>
+    <div class="col-3 p-3 text-center">
+      <form action="/gold/process_money" method="post" class="p-3 lugar">
+        <h4>La Caverna</h4>
+        <p>Gana entre 4 y 10 oros</p>
+        <input type="hidden" name="mingold" value="5">
+        <input type="hidden" name="maxgold" value="10">
+        <input type="hidden" name="lugar" value="la Caverna">
+        <input type="submit" value="¡Ganar!" class="btn btn-success">
+      </form>
+    </div>
+    <div class="col-3 p-3 text-center">
+      <form action="/gold/process_money" method="post" class="p-3 lugar">
+        <h4>La Casa</h4>
+        <p>Gana entre 2 y 5 oros</p>
+        <input type="hidden" name="mingold" value="2">
+        <input type="hidden" name="maxgold" value="5">
+        <input type="hidden" name="lugar" value="la Casa">
+        <input type="submit" value="¡Ganar!" class="btn btn-success">
+      </form>
+    </div>
+    <div class="col-3 p-3 text-center">
+      <form action="/gold/process_money" method="post" class="p-3 lugar">
+        <h4>EL Casino</h4>
+        <p>Gana o pierde entre 0 y 50 oros</p>
+        <input type="hidden" name="mingold" value="-50">
+        <input type="hidden" name="maxgold" value="50">
+        <input type="hidden" name="lugar" value="el Casino">
+        <input type="submit" value="¡Ganar!" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p>Mensajes:</p>
+      <div class="lugar">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
