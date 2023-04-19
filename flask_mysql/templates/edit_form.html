@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-6 offset-3">
+      <form action="/countries/edit/{{country.id}}" method="post">
+        <h3 class="text-success text-center">Edite {{country.name}}</h3>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nombre</label>
+          <input value="{{country.name}}" type="text" class="form-control" required name="name">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">PIB (en millones)</label>
+          <input value="{{country.gdp}}" type="number" min="0" class="form-control" required name="gdp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Población</label>
+          <input value="{{country.population}}" type="number" min="0" class="form-control" required name="population">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

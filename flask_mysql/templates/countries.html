@@ -7,13 +7,9 @@
       <ul class="list-group">
         {% for country in countries %}
           <li class="list-group-item">
-            {{ country.name }} (pob. {{country.population}})
+            <a href="/countries/detail/{{country.id}}">{{ country.name }} (pob. {{country.population}})</a> <a href="/countries/delete/{{ country.id }}" class="btn btn-danger">Eliminar</a> <a href="/countries/edit/{{ country.id }}" class="btn btn-warning">Editar</a>
           </li>
         {% endfor %}
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
       </ul>
     </div>
     <div class="col-6">

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+{% endblock %}
+
+{% block container %}
+  <div class="row">
+    <div class="col-4">
+      <h3 class="text-center">Datos de {{country.name}}</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          PIB:{{country.gdp}}
+        </li>
+        <li class="list-group-item">
+          Población: {{country.population}}
+        </li>
+      </ul>
+    </div>
+    <div class="col-4">
+      <h3 class="text-center">Ciudades de {{country.name}}</h3>
+      <ul class="list-group">
+        {% for city in country.cities %}
+          <li class="list-group-item">
+            {{city.name}}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="col-4">
+      <form action="/cities/new" method="post">
+        <h3 class="text-success text-center">Agregue una Ciudad</h3>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nombre</label>
+          <input type="text" class="form-control" required name="name">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Lenguajes</label>
+          <textarea name="languages" id="languages" cols="20" rows="3" required></textarea>
+        </div>
+        <input type="hidden" name="country_id" value="{{country.id}}">
+
+        <button type="submit" class="btn btn-primary">Agregar Cuidad</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
