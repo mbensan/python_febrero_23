@@ -1,9 +1,11 @@
 from flask import session, redirect, render_template, Blueprint, request, flash
 from app.models.author_model import Author
+from app.decorators import login_required
 
 authors = Blueprint('authors', __name__)
 
 @authors.route('/')
+@login_required
 def home():
     authors_dicts = Author.get_all()
     #return render_template('countries.html', countries=countries_dicts)

@@ -1,9 +1,11 @@
 from flask import session, redirect, render_template, Blueprint, request, flash
 from app.models.book_model import Book
+from app.decorators import login_required
 
 books = Blueprint('books', __name__)
 
 @books.route('/')
+@login_required
 def home():
     books_dicts = Book.get_all()
     return render_template('books.html', books=books_dicts)
