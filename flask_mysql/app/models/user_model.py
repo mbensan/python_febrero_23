@@ -1,6 +1,7 @@
-from app.models.connection import MySQLConnection
 from flask import flash
-#from server import bcrypt
+from app.models.connection import MySQLConnection
+from app import bcrypt
+
 
 MySQLConnection().query_db('''
     CREATE TABLE IF NOT EXISTS `world`.`users` (
@@ -33,13 +34,18 @@ class User:
 
     @classmethod
     def add(cls, name, email, password):
+        # 1. Generamos una contraseña encriptada
+        hashed_password = bcrypt.generate_password_hash(password)
+
+        # 2. Generamos la query
         query = 'insert into users (name, email, password) values (%(name)s, %(email)s, %(password)s)'
         data = {
             'name': name,
             'email': email,
-            'password': password
+            'password': hashed_password
         }
 
+        # 3. Ejecutamos la consulta
         new_user_id = MySQLConnection().query_db(query, data)
         return new_user_id
     
@@ -61,7 +67,7 @@ class User:
         
         # 3. Revisar que password sea la correcta
         user = results[0]
-        if user['password'] != password:
+        if not bcrypt.check_password_hash(user['password'], password):
             flash('Contraseña Incorrecta', 'danger')
             return None
         

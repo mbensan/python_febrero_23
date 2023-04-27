@@ -28,6 +28,3 @@ def new():
     flash(f'Libro {title} agregado con éxito', 'success')
     # 5. Redirigimos a ruta de autores
     return redirect('/books')
-
-
-

@@ -1,10 +1,4 @@
-from flask_bcrypt import Bcrypt
-from flask import Flask, render_template, request, redirect, session
-app = Flask(__name__)
-
-app.secret_key = 'Mi Clave'
-
-bcrypt = Bcrypt(app)
+from app import app
 
 from app.controllers.countries import countries
 from app.controllers.cities import cities
