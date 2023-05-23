@@ -45,3 +45,29 @@ def joe(clientes):
     print(f'La disntacia a todos sus clientes es {distancia_total}')
 
 joe(clientes_ejemplo)
+
+'''
+“La abeja (insecto volador [latin opiaras]) suele habitar {habitat (flores, bosques} cerca de la vegetacion” => False
+“(()))” => False
+“[{{(hola)}}]” => True
+'''
+def parentesis (palabra):
+    pila = [] # LIFO
+    for letra in palabra:
+        if letra == '(' or letra == '[' or letra == '{':
+            pila.append(letra)
+        elif letra in [')', ']', '}']:
+            if len(pila) == 0:
+                return False
+            ultimo = pila.pop()
+            if ultimo == '(' and letra != ')':
+                return False
+            elif ultimo == '[' and letra != ']':
+                return False
+            elif ultimo == '{' and letra != '}':
+                return False
+    if len(pila) > 0:
+        return False
+    return True
+
+isPalindrome = lambda palabra : palabra == palabra[::-1]
