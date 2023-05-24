@@ -41,3 +41,4 @@ def caput(latitud):
 
     vel_tangencial = vel_tangencial / 3.6
     print(f'Sale despedido a {vel_tangencial} k/h')
+
