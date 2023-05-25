@@ -68,6 +68,37 @@ def phone_words(phone_number):
 
 
 
-print(phone_words('57'))
-
 # num_a_romanos(57) => 'LVII'
+'''
+6 => 'seis'
+45 => 'cuarenta y cinco'
+'''
+def num_palabras(num): # 12
+    primeros15 = ['cero', 'uno', 'dos', 'tres', 'cuatro', 'cinco',
+        'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce',
+        'trece', 'catorce', 'quince']
+    
+    if num <= 15:
+        return primeros15[num]
+    
+    # los dieci-algo
+    elif num <= 19:
+        unidades = num % 10
+        return 'dieci' + num_palabras(unidades)
+    
+    elif num == 20:
+        return 'veinte'
+
+    elif num <= 29:
+        unidades = num % 20
+        return 'veinti' + num_palabras(unidades)
+    
+    else:
+        return 'no implementado'
+
+print(num_palabras(5))
+print(num_palabras(14))
+print(num_palabras(17))
+print(num_palabras(19))
+print(num_palabras(23))
+print(num_palabras(28))
