@@ -93,12 +93,49 @@ def num_palabras(num): # 12
         unidades = num % 20
         return 'veinti' + num_palabras(unidades)
     
+    # decenas y unidades (56)
+    elif num <= 99:
+        decenas = num // 10
+        unidades = num - (decenas * 10)
+
+        decenas_palabras = ['', '', '', 'treinta', 'cuarenta', 'cincuenta', 'sesenta', 'setenta',
+            'ochenta', 'noventa'][decenas]
+        
+        if unidades == 0:
+            return decenas_palabras
+        return decenas_palabras + ' y ' + num_palabras(unidades)
+    
+    elif num == 100:
+        return 'cien'
+    
+    elif num <= 999: # 678
+        centenas = num // 100
+        centenas_palabras = ['', 'ciento', 'doscientos', 'trescientos', 'cuatrocientos',
+            'quinientos', 'seiscientos', 'setencientos', 'ochocientos',
+            'novecientos'][centenas]
+        
+        resto = num - (centenas * 100)
+
+        if resto == 0:
+            return centenas_palabras
+        return centenas_palabras + ' ' + num_palabras(resto)
+    
+    elif num == 1000:
+        return 'mil'
+    
+    elif num <= 1999:
+        resto = num - 1000
+        return 'mil ' + num_palabras(resto)
+    
+    elif num <= 1000000: # 675234
+        miles = num // 1000
+        resto = num - (miles * 1000)
+        return num_palabras(miles) + ' mil ' + num_palabras(resto)
+    
     else:
         return 'no implementado'
 
 print(num_palabras(5))
-print(num_palabras(14))
-print(num_palabras(17))
-print(num_palabras(19))
-print(num_palabras(23))
-print(num_palabras(28))
+print(num_palabras(400))
+print(num_palabras(960))
+print(num_palabras(968530))
